@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ChatForm = () => {
   return (
@@ -22,7 +23,7 @@ const ChatForm = () => {
       <div className="flex text-center align-middle">
         <p className="text-[#C7D4DA] text-sm">
           <span href="" className="underline text-[#C7D4DA] text-sm">
-            <a href="">chatGPT jan 9 version.</a>
+            <Link to="/">chatGPT jan 9 version.</Link>
           </span>
           &nbsp; Free research preview. our goal is to make AI systems more
           natural and safe to interect with. Your feedback will help us improve.

@@ -1,4 +1,6 @@
 import { CheckIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
+import { Payment } from "../components/payment/Payment";
 
 const hobbyFeatures = [
   "Pariatur quod similique",
@@ -20,7 +22,7 @@ const growthFeatures = [
 
 export const PricePage = () => {
   return (
-    <div className="bg-gray-900">
+    <div className="bg-gray-900 pb-16">
       <div className="px-6 pt-12 lg:px-8 lg:pt-20">
         <div className="text-center">
           <h2 className="text-xl font-semibold leading-6 text-gray-300">
@@ -82,13 +84,13 @@ export const PricePage = () => {
                       </ul>
                       <div className="mt-8">
                         <div className="rounded-lg shadow-md">
-                          <a
-                            href="#"
+                          <Link
+                            to="chat"
                             className="block w-full rounded-lg border border-transparent bg-white px-6 py-3 text-center text-base font-medium text-indigo-600 hover:bg-gray-50"
                             aria-describedby="tier-hobby"
                           >
                             Start your trial
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -147,13 +149,13 @@ export const PricePage = () => {
                     </ul>
                     <div className="mt-10">
                       <div className="rounded-lg shadow-md">
-                        <a
-                          href="#"
+                        <Link
+                          to="chat"
                           className="block w-full rounded-lg border border-transparent bg-indigo-600 px-6 py-4 text-center text-xl font-medium leading-6 text-white hover:bg-indigo-700"
                           aria-describedby="tier-growth"
                         >
                           Start your trial
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -201,13 +203,13 @@ export const PricePage = () => {
                       </ul>
                       <div className="mt-8">
                         <div className="rounded-lg shadow-md">
-                          <a
-                            href="#"
+                          <Link
+                            to="chat"
                             className="block w-full rounded-lg border border-transparent bg-white px-6 py-3 text-center text-base font-medium text-indigo-600 hover:bg-gray-50"
                             aria-describedby="tier-scale"
                           >
                             Start your trial
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -219,7 +221,7 @@ export const PricePage = () => {
         </div>
       </div>
 
-      <div className="flex justify-center pt-8 bg-white pb-12 lg:pb-20 w-full ">
+      {/* <div className="flex justify-center pt-8 bg-white pb-12 lg:pb-20 w-full ">
         <div className="min-w-[800px] p-10 rounded-xl border border-[#ccc]">
           <h2 className="text-lg font-medium text-gray-900">Payment</h2>
           <div className="mt-2 text-base leading-7 text-gray-600">
@@ -388,6 +390,9 @@ export const PricePage = () => {
             </p>
           </div>
         </div>
+      </div> */}
+      <div className="bg-white pb-[50px]">
+        <Payment />
       </div>
     </div>
   );
