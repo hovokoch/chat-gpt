@@ -4,18 +4,18 @@ import axios from "axios";
 
 export const Payment = ({ price }) => {
   const [isProcessing, setIsProcessing] = useState(false);
-  // const stripe = useStripe();
-  // const elements = useElements();
+  const stripe = useStripe();
+  const elements = useElements();
 
   const cardElementOptions = {
-    style: {
-      base: {},
-      invalid: {},
-    },
+    // style: {
+    //   base: {},
+    //   invalid: {},
+    // },
     hidePostalCode: true,
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setIsProcessing(true);
@@ -26,21 +26,34 @@ export const Payment = ({ price }) => {
       email: e.target.email.value,
     };
 
-    // const { clientSecret } = axios({
-    //   method: "POST",
-    //   url: "http://localhost",
-    //   amount: price * 100,
-    // });
+    const { data } = await axios({
+      method: "POST",
+      url: "http://192.168.88.20:8000/payments/create-customer-secret",
+      data: {
+        email: "test@example.com",
+        amount: 100,
+        currency: "usd",
+      },
+    });
 
-    // const cardElement = elements.getElement(CardElement);
+    console.log(data.clientSecret, "clientSecret");
 
-    // const paymentMethod = stripe.createPaymentMethod({
-    //   type: 'card',
-    //   card: CardElement
-    // })
+    const { paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardElement),
+    });
+
+    console.log(paymentMethod.id, "payment method id");
+
+    const confirmCardPayment = await stripe.confirmCardPayment(
+      data.clientSecret,
+      {
+        payment_method: paymentMethod.id,
+      }
+    );
 
     setIsProcessing(false);
-    console.log(billingInputs);
+    console.log(confirmCardPayment);
   };
 
   return (
@@ -116,7 +129,9 @@ export const Payment = ({ price }) => {
               <label className="block text-sm font-medium text-gray-700">
                 Card
               </label>
-              <div className="mt-1">{/* <CardElement /> */}</div>
+              <div className="mt-1">
+                <CardElement options={cardElementOptions} />
+              </div>
             </div>
 
             {/* <div className="sm:col-span-3">
